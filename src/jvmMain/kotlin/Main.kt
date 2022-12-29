@@ -77,23 +77,23 @@ fun App() {
 
             }
             Text("Nota: 8/10  -  Ano: 2022", fontSize = 20.sp, fontWeight = FontWeight.Bold)
-                Row (horizontalArrangement = Arrangement.spacedBy(8.dp)){
-            Card(
-                backgroundColor = Color.LightGray,
-                border = BorderStroke(0.1.dp, color = Color.Black),
-                shape = CircleShape
-            ) { Text("Ação") }
-            Card(
-                backgroundColor = Color.LightGray,
-                border = BorderStroke(0.1.dp, color = Color.Black),
-                shape = CircleShape
-            ) { Text("Aventura") }
-            Card(
-                backgroundColor = Color.LightGray,
-                border = BorderStroke(0.1.dp, color = Color.Black),
-                shape = CircleShape
-            ) { Text("Fantasia") }
-        }
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Card(
+                    backgroundColor = Color.LightGray,
+                    border = BorderStroke(0.1.dp, color = Color.Black),
+                    shape = CircleShape
+                ) { Text("Ação") }
+                Card(
+                    backgroundColor = Color.LightGray,
+                    border = BorderStroke(0.1.dp, color = Color.Black),
+                    shape = CircleShape
+                ) { Text("Aventura") }
+                Card(
+                    backgroundColor = Color.LightGray,
+                    border = BorderStroke(0.1.dp, color = Color.Black),
+                    shape = CircleShape
+                ) { Text("Fantasia") }
+            }
         }
     }
 }
