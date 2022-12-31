@@ -1,12 +1,10 @@
 // Copyright 2000-2021 JetBrains s.r.o. and contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.
+
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -14,7 +12,6 @@ import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
@@ -27,7 +24,14 @@ import androidx.compose.ui.window.rememberWindowState
 @Composable
 @Preview
 fun App() {
+    val image = "https://jovemnerd.com.br/wp-content/uploads/2022/11/image002__5x00q89b.jpg"
+
+    val text by remember { mutableStateOf("Jake Sully vive com sua nova família na lua extrassolar Pandora. " +
+            "Uma vez que uma ameaça familiar retorna para terminar o que foi iniciado anteriormente, " +
+            "Jake deve trabalhar com Neytiri e o exército da raça Na'vi para proteger sua casa.") }
+
     var count by remember { mutableStateOf(0) }
+
     MaterialTheme {
 
         Column(Modifier.fillMaxSize().background(Color.Gray), verticalArrangement = Arrangement.spacedBy(20.dp)) {
@@ -40,41 +44,44 @@ fun App() {
                     fontWeight = FontWeight.Bold,
                     textDecoration = TextDecoration.Underline
                 )
-                Text("Duração: 3 h 12 min", fontSize = 18.sp)
+                Text(
+                    "Duração: 3 h 12 min",
+                    fontSize = 18.sp
+                )
+
             }
+
             Row(horizontalArrangement = Arrangement.spacedBy(20.dp)) {
+
                 Image(
-                    painter = painterResource("Imagem_Avatar.jpg"),
-                    contentDescription = "Avatar"
+                    bitmap = image.loadImageBitmap(),
+                    contentDescription = "capa do filme",
+                    modifier = Modifier.height(200.dp)
                 )
                 Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
 
                     Text(
-                        "Jake Sully vive com sua nova família na lua extrassolar Pandora. Uma vez que uma ameaça familiar retorna para terminar o que" +
-                                "foi iniciado anteriormente, Jake deve trabalhar com Neytiri e o exército da raça Na'vi para proteger sua casa.",
+                        text,
                         fontSize = 17.sp
                     )
                     Text("Direção: James Cameron", fontSize = 18.sp)
 
-                    if (count % 2 == 0 || count == 0) {
+                    if (count == 0) {
                         Button(
                             colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red),
                             onClick = { count++ }) {
                             Text("Favoritar")
                         }
-                    } else {
-                        ExtendedFloatingActionButton(onClick = { count++ },
+                    }
+                    else {
+                        ExtendedFloatingActionButton(
+                            onClick = { count-- },
                             text = { Text("Favoritado") },
-                            icon = { Icon(Icons.Filled.Star, "") }
+                            icon = { Icon(Icons.Filled.Star, "")
+                            }
                         )
                     }
-//               else  {
-//                    Button(colors= ButtonDefaults.buttonColors(backgroundColor = Color.Green),onClick = { count++ }) {
-//                        Text("Favoritado")
-//                    }
-//                }
                 }
-
             }
             Text("Nota: 8/10  -  Ano: 2022", fontSize = 20.sp, fontWeight = FontWeight.Bold)
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -98,7 +105,6 @@ fun App() {
     }
 }
 
-
 fun main() = application {
 
     Window(
@@ -109,4 +115,3 @@ fun main() = application {
         App()
     }
 }
-
